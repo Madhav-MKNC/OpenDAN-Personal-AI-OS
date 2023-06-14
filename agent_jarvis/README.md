@@ -17,9 +17,9 @@ Follow the code below:
 ```bash
 # Assuming your current workding directory is ${project_root}, i.e., the directory containing this README.md file.
 
-# Build our docker image. 
+# Pull the docker image
 # NOTE: You may need root privilege, if your docker daemon only allows root.
-bash build_docker.sh
+docker pull fiatrete/jarvis
 
 # Create our workspace and enter
 mkdir -p docker/jarvis
@@ -40,7 +40,7 @@ vim jarvis/.env
 docker run --name jarvis --rm \
     -p 10000:10000 \
     -v `pwd`/jarvis/.env:/root/.env \
-    jarvis:latest
+    fiatrete/jarvis:latest
 
 ```
 
@@ -61,9 +61,8 @@ To enable Jarvis with drawing capabilities, you will need to set up an Stable Di
 cd docker
 
 # Edit '.env' and configure DEMO_STABLE_DIFFUSION_ADDRESS
-# e.g. http://192.168.3.254:1997/sdapi/v1
-# NOTE 1: REMOVE the final slash '/', or sd-webui will not recognize the request
-# NOTE 2: Do *** NOT **** use 'localhost' or '127.0.0.1' or other loopback address, 
+# e.g. http://192.168.3.254:1997
+# NOTE: Do *** NOT **** use 'localhost' or '127.0.0.1' or other loopback address, 
 #   since we don't use host network in docker.
 vim jarvis/.env
 
@@ -168,7 +167,7 @@ If your issue is not listed above or you have any questions. **Feel free to open
 3. In your app detail page, navigate to `Settings -> User authentication settings -> Edit`.
 4. Select `Read and write` in `App permissions` table.
 5. Navigate to `Keys and Tokens` tab.
-6. Create a `API Key and Secret(Consumer Keys)` and a `Access Token and Secret`.
+6. Create an `API Key and Secret(Consumer Keys)` and an `Access Token and Secret`.
 
 **NOTE: You must select `Read and write` first, then create keys. If the keys were created first, you will have to recreate the keys again.**
 

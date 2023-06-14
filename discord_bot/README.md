@@ -2,7 +2,7 @@
 
 ## What is Jarvis Discord Bot?
 
-Using Jarvis Discord Bot you can interact with Jarvis through Discord app on various devices and share him with your friends. In the early versions of Jarvis, you could only interact with Jarvis through a simple web page. This limited your interaction with Jarvis to computers and browsers, and you had to be on the same local network. 
+Using Jarvis Discord Bot you can interact with Jarvis through Discord app on various devices and share him with your friends. In the early versions of Jarvis, you could only interact with Jarvis through a simple web page. This limited your interaction with Jarvis to computers and browsers, and you had to be on the same local network.
 
 ## How to setup
 
@@ -38,3 +38,16 @@ Using Jarvis Discord Bot you can interact with Jarvis through Discord app on var
   - Copy and paste the previously obtained `Token` and `CLIENT ID` into the `.env.local` file.
   - run `npm install`.
 - run `npm run start:bot`.
+
+NOTE: You need to set `JARVIS_SERVER_MODE=false` and `JARVIS_BOT_SERVER_URL="http://localhost:10000"` in the Jarvis's `.env` file
+### Running the bot in docker
+```
+# build docker image
+docker build -t jarvis-discord-bot .
+
+docker run -d --name jarvis-discord-bot \
+-e CLIENT_ID='Your Client ID' \
+-e BOT_TOKEN='Your Bot Token' \
+-e WEBSOCKET_PORT=10000 \
+jarvis-discord-bot:latest
+```
